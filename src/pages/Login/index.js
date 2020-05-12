@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, TextInput, View, Image, KeyboardAvoidingView, Text } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 
 import api from '../../services/api';
 
@@ -15,17 +16,33 @@ function Login() {
 
   async function login() {
     console.log('fazendo a request');
-    const response =  await api.post('/sessions', {
-      params: {
-        email: 'denis.lopes3012@gmail.com',
-        password: '123456'
-      }
-    });
+    // const response =  await api.get('/testapi',{});
 
-    console.log(response.data);
+    // console.log('email eh: ' + email);
+    // console.log('senha eh: ' + senha);
+    try{
+      const response = await api.post('/sessions', {
+          email: email,
+          password: senha
+      })
+
+      console.log(response.data);
+
+      await AsyncStorage.setItem('@AirGarage:token', response.data.token);
+
+      token = await AsyncStorage.getItem('@AirGarage:token');
+
+    } catch (error) {
+      console.log(" XDED" + error)
+    }
+
+
+    // console.log("token eh:" + token);
 
     // setSession(response.data);
   }
+
+
 
   return(
     <KeyboardAvoidingView style={styles.background}>
