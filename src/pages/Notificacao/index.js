@@ -1,10 +1,10 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 
-function Home({ navigation }) {
+function Notification({ navigation }) {
   return (
     <View />
   )
 }
 
-export default Home;
+export default Notification;

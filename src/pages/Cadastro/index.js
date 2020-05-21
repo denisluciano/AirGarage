@@ -1,8 +1,10 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 
-function login() {
+function SignUp({ navigation }) {
   return (
     <View />
-  );
+  )
 }
+
+export default SignUp;
