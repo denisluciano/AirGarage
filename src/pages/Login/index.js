@@ -8,7 +8,7 @@ import styles from './style'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
-function Login() {
+function Login({ navigation }) {
   const [email, onChangeEmail] = React.useState('');
   const [senha, onChangeText] = React.useState('');
 
@@ -26,14 +26,18 @@ function Login() {
           password: senha
       })
 
-      console.log(response.data);
+      // console.log(response.data);
 
       await AsyncStorage.setItem('@AirGarage:token', response.data.token);
 
-      token = await AsyncStorage.getItem('@AirGarage:token');
+      var token = await AsyncStorage.getItem('@AirGarage:token');
+
+      // console.log(token)
+
+      navigation.navigate('Home')
 
     } catch (error) {
-      console.log(" XDED" + error)
+      console.log("Ocorreu um erro: " + error)
     }
 
 
