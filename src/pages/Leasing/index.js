@@ -1,10 +1,10 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 
-function Location({ navigation }) {
+function Leasing({ navigation }) {
   return (
     <View />
   )
 }
 
-export default Location;
+export default Leasing;

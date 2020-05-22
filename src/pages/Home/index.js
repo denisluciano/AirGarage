@@ -1,39 +1,52 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, ScrollView, StyleSheet } from 'react-native';
 
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-
-
-function HomeScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+function CardGaragem() {
+  return(
+    <View style={styles.cardGaragem}>
       <Text>Home!</Text>
     </View>
   );
 }
 
-function SettingsScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Settings!</Text>
-    </View>
-  );
-}
-
-const Tab = createBottomTabNavigator();
-
 
 function Home({ navigation }) {
   return (
-
-      <Tab.Navigator>
-        <Tab.Screen name="Home" component={HomeScreen} />
-        <Tab.Screen name="Settings" component={SettingsScreen} />
-      </Tab.Navigator>
-
+    <ScrollView style={styles.scrollViewHome}>
+      <CardGaragem />
+      <CardGaragem />
+      <CardGaragem />
+      <CardGaragem />
+      <CardGaragem />
+      <CardGaragem />
+      <CardGaragem />
+      <CardGaragem />
+      <CardGaragem />
+      <CardGaragem />
+      <CardGaragem />
+      <CardGaragem />
+      <CardGaragem />
+      <CardGaragem />
+    </ScrollView>
   );
 }
 
 export default Home;
 
 
+const styles = StyleSheet.create({
+  cardGaragem: {
+    flex: 0.5,
+    padding: 30,
+    backgroundColor: "#fff",
+    marginTop: 5,
+    marginLeft: 10,
+    marginRight: 10,
+    borderRadius: 5,
+    //android
+    elevation: 5
+  },
+  scrollViewHome: {
+    marginTop: 10,
+  }
+});
