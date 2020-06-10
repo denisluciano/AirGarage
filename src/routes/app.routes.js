@@ -4,6 +4,11 @@ import { StyleSheet } from 'react-native'
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+
+
 const App = createBottomTabNavigator();
 
 import Favorite from '../pages/Favorite'
@@ -15,9 +20,37 @@ import Profile from '../pages/Profile';
 function AppRoutes() {
   return (
     <App.Navigator
-      screenOptions={{
+      // screenOptions={{
+      //   headerShown:false,
+      // }}
+      screenOptions={({ route }) => ({
         headerShown:false,
-      }}
+        tabBarIcon: ({ focused, color, size }) => {
+
+          if (route.name === 'Página Inicial') {
+            return focused
+              ? <MaterialCommunityIcons name='home' size={size} color={color} />
+              : <MaterialCommunityIcons name='home-outline' size={size} color={color} />;
+          } else if (route.name === 'Notificações') {
+            return focused
+              ? <Ionicons name='md-notifications' size={size} color={color} />
+              : <Ionicons name='ios-notifications-outline' size={size} color={color} />;
+          }else if (route.name === 'Locações') {
+            return focused
+              ? <Ionicons name='ios-list-box' size={size} color={color} />
+              : <Ionicons name='ios-list' size={size} color={color} />;
+          }else if (route.name === 'Favoritos') {
+            return focused
+              ? <MaterialCommunityIcons name='heart' size={size} color={color} />
+              : <MaterialCommunityIcons name='heart-outline' size={size} color={color} />;
+          }else if (route.name === 'Perfil') {
+            return focused
+              ? <FontAwesome name='user' size={size} color={color} />
+              : <FontAwesome name='user-o' size={size} color={color} />;
+          }
+
+        },
+      })}
       tabBarOptions={{
         activeBackgroundColor: "#F4C20D",
         inactiveBackgroundColor: "#F4C20D",

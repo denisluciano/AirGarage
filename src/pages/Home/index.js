@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, ScrollView, StyleSheet, Image } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 function CardGaragem() {
   return(
@@ -13,7 +14,7 @@ function CardGaragem() {
         <View style={styles.headerInfoCard}>
           <Text>Garagem completa</Text>
 
-          <Text>s2</Text>
+          <Icon name="heart-o" size={18} color="#000" />
         </View>
       </View>
     </View>
