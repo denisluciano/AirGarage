@@ -17,6 +17,9 @@ import Leasing from '../pages/Leasing';
 import Notification from '../pages/Notification';
 import Profile from '../pages/Profile';
 
+import HomeRoutes from './home.routes';
+
+
 function AppRoutes() {
   return (
     <App.Navigator
@@ -60,7 +63,7 @@ function AppRoutes() {
       }}
 
       >
-        <App.Screen name="Página Inicial" component={Home} />
+        <App.Screen name="Página Inicial" component={HomeRoutes} />
         <App.Screen name="Notificações" component={Notification} />
         <App.Screen name="Locações" component={Leasing} tabBarOptions={{ activeBackgroundColor:"#F4C20D" }} />
         <App.Screen name="Favoritos" component={Favorite} />

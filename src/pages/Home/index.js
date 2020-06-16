@@ -1,6 +1,8 @@
 import React from 'react';
-import { View, Text, ScrollView, StyleSheet, Image } from 'react-native';
+import { Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, ImageBackground } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+
+import styles from './style';
 
 function CardGaragem() {
   return(
@@ -10,80 +12,82 @@ function CardGaragem() {
         source={require('../../assets/garagem.png')}
         />
       </View>
-      <View style={styles.containerInfoCard}>
-        <View style={styles.headerInfoCard}>
-          <Text>Garagem completa</Text>
+      <View style={styles.containerInfo}>
+        <View style={styles.headerInfo}>
+          <Text style={styles.textTitle}>Garagem completa</Text>
 
           <Icon name="heart-o" size={18} color="#000" />
+        </View>
+
+        <View style={styles.adressInfo}>
+          <Text style={styles.textAdress}>Bairro Santa Clara, Viçosa - MG</Text>
+        </View>
+
+        <View style={styles.valueInfo}>
+          <Text style={styles.textValue}>300,00/Mês</Text>
+
+        </View>
+        <View style={styles.bottomInfo}>
+          <View style={styles.rateInfo}>
+            <Icon name="star-o" size={18} color="#000" />
+            <Text>4,5</Text>
+          </View>
+          <View>
+            <TouchableOpacity
+              style={ styles.btnDetalhes}
+              onPress={() => {}}
+            >
+              <Text style={styles.textDetalhes}>Detalhes</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     </View>
   );
 }
 
-
-function Home({ navigation }) {
+function SearchBar() {
+  const [value, onChangeText] = React.useState('');
   return (
-    <ScrollView
-      style={styles.scrollViewHome}
-      showsVerticalScrollIndicator={false}
-    >
-      <CardGaragem />
-      <CardGaragem />
-      <CardGaragem />
-      <CardGaragem />
-      <CardGaragem />
-      <CardGaragem />
-      <CardGaragem />
-      <CardGaragem />
-      <CardGaragem />
-      <CardGaragem />
-      <CardGaragem />
-      <CardGaragem />
-      <CardGaragem />
-      <CardGaragem />
-    </ScrollView>
+    <View style={styles.searchContainer}>
+      <Icon style={styles.searchIcon} name="search" size={18} color="#000" />
+      <TextInput
+         style={styles.searchBar}
+         onChangeText={text => onChangeText(text)}
+         value={value}
+         placeholder="Encontre uma garagem"
+      />
+    </View>
   );
 }
 
-export default Home;
 
+function HomeScreen({ navigation }) {
+  return (
+    <View style={styles.screen}>
+      <SearchBar />
+      <ScrollView
+        style={styles.scrollViewHome}
+        showsVerticalScrollIndicator={false}
+      >
 
-const styles = StyleSheet.create({
-  cardGaragem: {
-    flex: 1,
-    flexDirection:"row", //Indica a direção dos items, se é vertical ou horizontal
-    // justifyContent: "space-between",
+        <CardGaragem />
+        <CardGaragem />
+        <CardGaragem />
+        <CardGaragem />
+        <CardGaragem />
+        <CardGaragem />
+        <CardGaragem />
+        <CardGaragem />
+        <CardGaragem />
+        <CardGaragem />
+        <CardGaragem />
+        <CardGaragem />
+        <CardGaragem />
+        <CardGaragem />
+      </ScrollView>
+    </View>
+  );
+}
 
-    paddingBottom: 15,
-    paddingTop: 15,
-    paddingLeft: 10,
-    paddingRight:10,
-    backgroundColor: "#fff",
-    marginTop: 5,
-    marginLeft: 10,
-    marginRight: 10,
-    borderRadius: 5,
-    elevation: 5
-  },
-  scrollViewHome: {
-    marginTop: 10,
-  },
-  containerInfoCard:{
-    flex:1,
-
-    backgroundColor: 'red',
-  },
-  containerImageGarage:{
-
-
-    // backgroundColor: 'red',
-  },
-  headerInfoCard:{
-    flexDirection:"row",
-    justifyContent: "space-between",
-    paddingTop: 5,
-    paddingRight: 5,
-    paddingLeft: 5.
-  },
-});
+export default HomeScreen;
