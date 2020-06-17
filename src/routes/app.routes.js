@@ -1,28 +1,45 @@
+/*
+Uma observação que tenho a fazer aqui. Inicialmente o esquema de rotas era
+feito de uma forma diferente, mas precisamos mudar pois em algumas telas
+precisavamos ocultar o meu inferior e o react native não recomendava usar
+'tabBarVisible', pois poderia acontecer alguns bugs. A recomendação era
+criar uma pilha antes e depois chamar a tab, então foi isso que fizemos.
+
+Tudo isso que foi mencionado a cima está na doc v5,
+https://reactnavigation.org/docs/hiding-tabbar-in-screens/
+
+Antes tinhamos as tabs e para cada tab tinha um componente de stach, como
+por exemplo para tab Home o component dava as outras screens em uma pilha.
+Esse component ficava em um arquivo separado chamado home.routes.js e nele
+era carregado de fato os components react-native
+*/
 import * as React from 'react';
 
 import { StyleSheet } from 'react-native'
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 
-const App = createBottomTabNavigator();
+const AppTab = createBottomTabNavigator();
 
+import HomeScreen from '../pages/Home';
 import Favorite from '../pages/Favorite'
 import Home from '../pages/Home';
 import Leasing from '../pages/Leasing';
 import Notification from '../pages/Notification';
 import Profile from '../pages/Profile';
+import Garage from '../pages/Garage';
+import EditProfile from '../pages/EditProfile';
 
-import HomeRoutes from './home.routes';
 
-
-function AppRoutes() {
+function TabRoutes() {
   return (
-    <App.Navigator
+    <AppTab.Navigator
       // screenOptions={{
       //   headerShown:false,
       // }}
@@ -59,25 +76,36 @@ function AppRoutes() {
         inactiveBackgroundColor: "#F4C20D",
         activeTintColor: 'black',
         inactiveTintColor: 'black',
-
       }}
 
+
       >
-        <App.Screen name="Página Inicial" component={HomeRoutes} />
-        <App.Screen name="Notificações" component={Notification} />
-        <App.Screen name="Locações" component={Leasing} tabBarOptions={{ activeBackgroundColor:"#F4C20D" }} />
-        <App.Screen name="Favoritos" component={Favorite} />
-        <App.Screen name="Perfil" component={Profile} />
-      </App.Navigator>
+        <AppTab.Screen name="Página Inicial" component={Home}  />
+        <AppTab.Screen name="Notificações" component={Notification} />
+        <AppTab.Screen name="Locações" component={Leasing} tabBarOptions={{ activeBackgroundColor:"#F4C20D" }} />
+        <AppTab.Screen name="Favoritos" component={Favorite} />
+        <AppTab.Screen name="Perfil" component={Profile} />
+      </AppTab.Navigator>
   );
 }
 
+const AppStack = createStackNavigator();
+
+function AppRoutes({ navigation, route  }) {
+
+  return (
+    <AppStack.Navigator
+      screenOptions={{
+        headerShown:false,
+      }}
+    >
+      <AppStack.Screen name="Home" component={TabRoutes} />
+      <AppStack.Screen name="Garage" component={Garage} />
+      <AppStack.Screen name="EditProfileScreen" component={EditProfile} />
+
+    </AppStack.Navigator>
+  );
+}
+
+
 export default AppRoutes;
-
-const styles = StyleSheet.create({
-  // navigatorAppRoutes:{
-
-  // }
-})
-
-

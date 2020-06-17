@@ -1,9 +1,20 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity} from 'react-native';
+
 
 function Profile({ navigation }) {
   return (
-    <View />
+    <ScrollView >
+      <View>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('Garage')}
+        >
+          <Text> Editar dados </Text>
+        </TouchableOpacity>
+      </View>
+
+
+    </ScrollView>
   )
 }
 

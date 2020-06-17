@@ -5,11 +5,23 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import styles from './style';
 
 
-function GarageScreen() {
+function Garage({ navigation }) {
+
   return(
     <>
+      <TouchableOpacity
+
+        onPress={
+          () => {
+            navigation.navigate('EditProfileScreen')
+          }
+
+        }
+      >
+        <Text >Detalhes</Text>
+      </TouchableOpacity>
     </>
   );
 }
 
-export default GarageScreen;
+export default Garage;

@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 import styles from './style';
 
-function CardGaragem() {
+function CardGaragem({ navigation }) {
   return(
     <View style={styles.cardGaragem}>
       <View style={ styles.containerImageGarage }>
@@ -35,7 +35,7 @@ function CardGaragem() {
           <View>
             <TouchableOpacity
               style={ styles.btnDetalhes}
-              onPress={() => {}}
+              onPress={() => navigation.navigate('Garage')}
             >
               <Text style={styles.textDetalhes}>Detalhes</Text>
             </TouchableOpacity>
@@ -71,7 +71,7 @@ function HomeScreen({ navigation }) {
         showsVerticalScrollIndicator={false}
       >
 
-        <CardGaragem />
+        <CardGaragem navigation={navigation} />
         <CardGaragem />
         <CardGaragem />
         <CardGaragem />
