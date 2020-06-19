@@ -35,6 +35,7 @@ import Notification from '../pages/Notification';
 import Profile from '../pages/Profile';
 import Garage from '../pages/Garage';
 import EditProfile from '../pages/EditProfile';
+import Disponibilidade from '../pages/Disponibilidade';
 
 
 function TabRoutes() {
@@ -102,6 +103,7 @@ function AppRoutes({ navigation, route  }) {
       <AppStack.Screen name="Home" component={TabRoutes} />
       <AppStack.Screen name="Garage" component={Garage} />
       <AppStack.Screen name="EditProfileScreen" component={EditProfile} />
+      <AppStack.Screen name="Disponibilidade" component={Disponibilidade} />
 
     </AppStack.Navigator>
   );

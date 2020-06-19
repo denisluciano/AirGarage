@@ -35,7 +35,7 @@ function CardGaragem({ navigation }) {
           <View>
             <TouchableOpacity
               style={ styles.btnDetalhes}
-              onPress={() => navigation.navigate('Garage')}
+              onPress={() => navigation.navigate('Disponibilidade')}
             >
               <Text style={styles.textDetalhes}>Detalhes</Text>
             </TouchableOpacity>
