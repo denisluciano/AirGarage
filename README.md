@@ -27,14 +27,14 @@ Possivelmente será necessário dar permissão para gradlew, então
 chmod 755 android/gradlew
 ```
 
-## Em terminais distintos com emulador já aberto rode
+## Em terminais distintos com emulador já aberto rode (A porta é especificada pois são dois apps)
 
 ```
-npx react-native start
+npx react-native start --port 8081
 ```
 
 ```
-npx react-native run-android
+npx react-native run-android --port 8081
 ```
 
 

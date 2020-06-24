@@ -34,7 +34,7 @@ function Login({ navigation }) {
 
       // console.log(token)
 
-      navigation.navigate('Home')
+      navigation.navigate('TabRoutes')
 
     } catch (error) {
       console.log("Ocorreu um erro: " + error)
