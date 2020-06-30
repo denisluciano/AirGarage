@@ -20,11 +20,11 @@ function CardGaragem({ navigation }) {
         </View>
 
         <View style={styles.adressInfo}>
-          <Text style={styles.textAdress}>Bairro Santa Clara, Viçosa - MG</Text>
+          <Text style={styles.textAdress}>Av Juscelino Kubitschek, Santa Clara, Viçosa - MG</Text>
         </View>
 
         <View style={styles.valueInfo}>
-          <Text style={styles.textValue}>300,00/Mês</Text>
+          <Text style={styles.textValue}>15,00/Dia</Text>
 
         </View>
         <View style={styles.bottomInfo}>
@@ -72,19 +72,19 @@ function HomeScreen({ navigation }) {
       >
 
         <CardGaragem navigation={navigation} />
-        <CardGaragem />
-        <CardGaragem />
-        <CardGaragem />
-        <CardGaragem />
-        <CardGaragem />
-        <CardGaragem />
-        <CardGaragem />
-        <CardGaragem />
-        <CardGaragem />
-        <CardGaragem />
-        <CardGaragem />
-        <CardGaragem />
-        <CardGaragem />
+        <CardGaragem navigation={navigation} />
+        <CardGaragem navigation={navigation} />
+        <CardGaragem navigation={navigation} />
+        <CardGaragem navigation={navigation} />
+        <CardGaragem navigation={navigation} />
+        <CardGaragem navigation={navigation} />
+        <CardGaragem navigation={navigation} />
+        <CardGaragem navigation={navigation} />
+        <CardGaragem navigation={navigation} />
+        <CardGaragem navigation={navigation} />
+        <CardGaragem navigation={navigation} />
+        <CardGaragem navigation={navigation} />
+        <CardGaragem navigation={navigation} />
       </ScrollView>
     </View>
   );

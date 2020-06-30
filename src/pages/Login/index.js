@@ -62,6 +62,7 @@ function Login({ navigation }) {
           value={email}
           autoCapitalize="none"
           autoCorrect={false}
+          placeholder="Email"
         />
         <TextInput
           style={ styles.input }
@@ -69,6 +70,9 @@ function Login({ navigation }) {
           value={senha}
           autoCapitalize="none"
           autoCorrect={false}
+          secureTextEntry={true}
+          placeholder="Senha"
+
         />
         <TouchableOpacity
           style={ styles.btnSubmit}
@@ -76,12 +80,7 @@ function Login({ navigation }) {
         >
           <Text style={styles.submitText}>Login</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={ styles.btnRegister}>
-          <Text style={styles.registerText}>Registrar-se</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={ styles.btnForgot}>
-          <Text style={styles.registerForgot}>Cadastrar-se</Text>
-        </TouchableOpacity>
+
       </View>
     </KeyboardAvoidingView>
   )

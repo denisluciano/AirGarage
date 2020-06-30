@@ -81,7 +81,7 @@ function TabRoutes() {
 
 
       >
-        <AppTab.Screen name="Página Inicial" component={Garage}  />
+        <AppTab.Screen name="Página Inicial" component={HomeScreen}  />
         <AppTab.Screen name="Notificações" component={Notification} />
         <AppTab.Screen name="Locações" component={Leasing} tabBarOptions={{ activeBackgroundColor:"#F4C20D" }} />
         <AppTab.Screen name="Favoritos" component={Favorite} />
@@ -92,7 +92,7 @@ function TabRoutes() {
 
 const AppStack = createStackNavigator();
 
-function AppRoutes({ navigation, route  }) {
+function AppRoutes() {
 
   return (
     <AppStack.Navigator

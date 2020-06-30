@@ -4,6 +4,8 @@ const styles = StyleSheet.create({
   adressInfo:{
     alignItems: "center",
     flex: 1,
+    paddingLeft:5,
+    paddingRight: 5
   },
   bottomInfo: {
     flex: 1,
@@ -81,11 +83,13 @@ const styles = StyleSheet.create({
   },
   textAdress:{
     color:'#666',
-    fontSize:14
+    fontSize:14,
+
+
   },
   textDetalhes: {},
   textTitle: {
-    fontSize: 16,
+    fontSize: 18,
   },
   textValue:{
     fontSize: 18,

@@ -25,7 +25,7 @@ function ComentaryCard(){
 function Garage({ navigation }) {
 
   return(
-    <ScrollView style={{flex:1}}>
+    <ScrollView style={styles.containerGarage}>
       <View>
       <ScrollView
         // style={styles.containerImageGarage}
@@ -41,85 +41,92 @@ function Garage({ navigation }) {
         <View></View>
       </ScrollView>
       </View>
-      <View style={styles.containerTitulo}>
-        <Text>Titulo Garagem</Text>
-        <Icon name="heart-o" size={18} color="#000" />
-      </View>
-      <View style={styles.containerDescricao}>
-        <Text>Descrição</Text>
-        <Text>Uma garagem em uma área no centro próximo aos principais banco de da cidade além de ser uma área segura. </Text>
-      </View>
-      <View style={styles.containerInformacao}>
-        <View>
-          <Text>Informações</Text>
+      <View style={styles.containerAllInformation}>
+        <View style={styles.containerTitulo}>
+          <Text style={styles.textTitle}>Titulo Garagem</Text>
+          <Icon name="heart-o" size={18} color="#000" />
         </View>
-        <View>
+        <View style={styles.containerDescricao}>
+          <Text>Descrição</Text>
+          <Text>Uma garagem no centro da cidade, próximo aos principais bancos da cidade. Além de ser uma área muito segura. </Text>
+        </View>
+        <View style={styles.containerInformation}>
           <View>
-            <IconMaterial name="arrow-expand-horizontal" size={18} color="#000" />
-            <Text>Dimensões</Text>
+            <Text style={styles.textInformation}>Informações</Text>
           </View>
-          <View>
-            <IconMaterial name="format-vertical-align-top" size={18} color="#000" />
-            <Text>Altura Máxima</Text>
-          </View>
-          <View>
-            <Icon name="building" size={18} color="#000" />
-            <Text>Tipo</Text>
-          </View>
-          <View>
-            <Icon name="vcard-o" size={18} color="#000" />
-            <Text>Acesso controlado</Text>
-          </View>
-          <View>
-            <Icon name="video-camera" size={18} color="#000" />
-            <Text>Cameras de segurança</Text>
-          </View>
-          <View>
-            <Icon name="times-circle" size={18} color="#000" />
-            <Text>Vaga presa</Text>
-          </View>
-          <View>
-            <IconMaterial name="fridge-top" size={18} color="#000" />
-            <Text>Depósito de objetos</Text>
-          </View>
-          <View>
-            <IconMaterial name="umbrella-outline" size={18} color="#000" />
-            <Text>Coberto</Text>
+          <View style={styles.containerInformationItems}>
+            <View style={styles.itemInformation}>
+              <IconMaterial name="arrow-expand-horizontal" size={18} color="#000" />
+              <Text style={styles.textItemInformation}>Dimensões</Text>
+            </View>
+            <View style={styles.itemInformation}>
+              <IconMaterial name="format-vertical-align-top" size={18} color="#000" />
+              <Text style={styles.textItemInformation}>Altura Máxima</Text>
+            </View>
+            <View style={styles.itemInformation}>
+              <Icon name="building" size={18} color="#000" />
+              <Text style={styles.textItemInformation}>Tipo</Text>
+            </View>
+            <View style={styles.itemInformation}>
+              <Icon name="vcard-o" size={18} color="#000" />
+              <Text style={styles.textItemInformation}>Acesso controlado</Text>
+            </View>
+            <View style={styles.itemInformation}>
+              <Icon name="video-camera" size={18} color="#000" />
+              <Text style={styles.textItemInformation}>Cameras de segurança</Text>
+            </View>
+            <View style={styles.itemInformation}>
+              <Icon name="times-circle" size={18} color="#000" />
+              <Text style={styles.textItemInformation}>Vaga presa</Text>
+            </View>
+            <View style={styles.itemInformation}>
+              <IconMaterial name="fridge-top" size={18} color="#000" />
+              <Text style={styles.textItemInformation}>Depósito de objetos</Text>
+            </View>
+            <View style={styles.itemInformation}>
+              <IconMaterial name="umbrella-outline" size={18} color="#000" />
+              <Text style={styles.textItemInformation}>Coberto</Text>
+            </View>
           </View>
         </View>
-      </View>
-      <View style={styles.containerEndereco}>
-        <View>
-          <Text>Endereço</Text>
-        </View>
-        <View style={{flex:1, alignItems: "center"}}>
-          <MapView style={{flex:1, width: 380, height:100}}
-            region={{
-              latitude: -20.756138,
-              longitude: -42.891375,
-              latitudeDelta: 0.015,
-              longitudeDelta: 0.0121,
-            }}
-          />
-        </View>
-        <View>
-          <Text>Av Jk, Bairro Santa Clara, Viçosa MG</Text>
-        </View>
-      </View>
-      <View style={styles.containerAvaliacao}>
-        <Text>Avaliacão</Text>
-        <Text>4,7</Text>
-      </View>
-      <View style={styles.containerComentarios}>
-        <Text>Comentários</Text>
+        <View style={styles.containerEndereco}>
 
-        <ComentaryCard />
-        <ComentaryCard />
-        <ComentaryCard />
-        <ComentaryCard />
+            <Text style={styles.textEndereco}>Endereço</Text>
+
+          <View style={styles.containerMaps}>
+            <MapView style={styles.Maps}
+              region={{
+                latitude: -20.756138,
+                longitude: -42.891375,
+                latitudeDelta: 0.0043,
+              longitudeDelta: 0.0034
+              }}
+            />
+          </View>
+          <View>
+            <Text>Av Jk, Bairro Santa Clara, Viçosa MG</Text>
+          </View>
+        </View>
+        <View style={styles.containerAvaliacao}>
+          <Text>Avaliacão</Text>
+          <Text>4,7</Text>
+        </View>
+        <View style={styles.containerComentarios}>
+          <Text>Comentários</Text>
+
+          <ComentaryCard />
+          <ComentaryCard />
+          <ComentaryCard />
+          <ComentaryCard />
+          <TouchableOpacity
+            style={ styles.btnDetalhes}
+            onPress={() => navigation.navigate('Disponibilidade')}
+          >
+            <Text style={styles.textDetalhes}>Ver disponibilidade</Text>
+          </TouchableOpacity>
+        </View>
+
       </View>
-
-
 
     </ScrollView>
 
