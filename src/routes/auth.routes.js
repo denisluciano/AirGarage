@@ -5,7 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 const Auth = createStackNavigator();
 
 import Init from '../pages/Init';
-import Login from '../pages/Login';
+import SignIn from '../pages/SignIn';
 import AppRoutes from './app.routes';
 import SignUp from '../pages/SignUp';
 
@@ -18,7 +18,7 @@ function AuthRoutes() {
       }}
     >
       <Auth.Screen name="Init" component={Init} />
-      <Auth.Screen name="Login" component={Login} />
+      <Auth.Screen name="Login" component={SignIn} />
       <Auth.Screen name="SignUp" component={SignUp} />
       <Auth.Screen name="TabRoutes" component={AppRoutes} />
     </Auth.Navigator>

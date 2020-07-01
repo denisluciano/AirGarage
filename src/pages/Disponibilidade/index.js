@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, FlatList } from 'react-native';
 
-import {Calendar, CalendarList, Agenda, LocaleConfig} from 'react-native-calendars';
+import {Calendar, CalendarList, Agenda, LocaleConfig } from 'react-native-calendars';
 
 import styles from './style';
 
@@ -21,36 +21,6 @@ const calendary =
 };
 
 
-function Calendary (){
-  return(
-
-    <FlatList
-    data={[
-      {key: '1'},
-      {key: '2'},
-      {key: '3'},
-      {key: '4'},
-      {key: 'James'},
-      {key: 'Joel'},
-      {key: 'John'},
-      {key: 'Jillian'},
-      {key: 'Jimmy'},
-      {key: 'Julie'},
-    ]}
-    renderItem={({item}) =>
-    <View style={styles.containerDia}>
-      <TouchableOpacity
-        // style={}
-        onPress={() => {}}
-      >
-        <Text>{item.key}</Text>
-      </TouchableOpacity>
-    </View>
-    }
-  />
-
-  );
-}
 
 function Disponibilidade({ navigation }) {
   LocaleConfig.defaultLocale = 'pt-br';
@@ -63,21 +33,41 @@ function Disponibilidade({ navigation }) {
     today: 'Hoje'
   };
   return (
-    <View>
-      <CalendarList
-        markedDates={{
-          '2020-06-16': {selected: true, selectedColor: 'blue'},
-          '2020-06-17': {selected: true, selectedColor: 'blue'},
-          '2020-06-18': {selected: true, selectedColor: 'blue'},
-          '2020-06-19': {selected: true, selectedColor: 'blue'},
-          '2020-06-20': {disabled: true},
-        }}
-        pastScrollRange={0}
-        // Max amount of months allowed to scroll to the future. Default = 50
-        futureScrollRange={3}
-        // Enable or disable scrolling of calendar list
-      />
-    </View>
+    <>
+      <View style={styles.containerDisponibilidade}>
+        <View>
+          <Text style={styles.textDisponibilidade}>Veja as datas disponíveis e selecione os dias que deseja alugar</Text>
+        </View>
+
+        <View style={styles.containerCalendary}>
+          <CalendarList
+            markedDates={{
+              '2020-06-16': {selected: true, selectedColor: 'blue'},
+              '2020-06-17': {selected: true, selectedColor: 'blue'},
+              '2020-06-18': {selected: true, selectedColor: 'blue'},
+              '2020-06-19': {selected: true, selectedColor: 'blue'},
+              '2020-06-20': {disabled: true},
+            }}
+            pastScrollRange={0}
+            // Max amount of months allowed to scroll to the future. Default = 50
+            futureScrollRange={3}
+            // Enable or disable scrolling of calendar list
+          />
+        </View>
+
+      </View>
+      <View style={styles.bottomBar}>
+        <Text>Confimar datas</Text>
+        <TouchableOpacity
+          style={ styles.btnConfirmar}
+          onPress={() => navigation.navigate('Garage')}
+        >
+          <Text style={styles.textConfirmar}>Confirmar</Text>
+        </TouchableOpacity>
+
+      </View>
+
+    </>
   );
 }
 

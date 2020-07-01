@@ -1,49 +1,35 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Button, TextInput, View, Image, KeyboardAvoidingView, Text } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 
-import api from '../../services/api';
 
-import styles from './style'
+import styles from './style';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
+import AuthContext from '../../contexts/auth';
 
-function Login({ navigation }) {
-  const [email, onChangeEmail] = React.useState('');
-  const [senha, onChangeText] = React.useState('');
 
+function SignIn({ navigation }) {
+  const [email, onChangeEmail] = React.useState('denis.lopes3012@gmail.com');
+  const [senha, onChangeText] = React.useState('png126497');
   const [session, setSession] = React.useState(null);
 
-  async function login() {
-    console.log('fazendo a request');
-    // const response =  await api.get('/testapi',{});
 
-    // console.log('email eh: ' + email);
-    // console.log('senha eh: ' + senha);
-    try{
-      const response = await api.post('/sessions', {
-          email: email,
-          password: senha
-      })
+  //aqui estou usando meu contexto de autentificação
+  const { signed, signIn } = useContext(AuthContext);
 
-      // console.log(response.data);
+  console.log(signed);
 
-      await AsyncStorage.setItem('@AirGarage:token', response.data.token);
+  async function handleSignIn() {
 
-      var token = await AsyncStorage.getItem('@AirGarage:token');
+    //estou chamando a função "signIn" que eu passo no contexto auth aqui
+    signIn(email, senha);
 
-      // console.log(token)
+    console.log('Logar')
 
-      navigation.navigate('TabRoutes')
-
-    } catch (error) {
-      console.log("Ocorreu um erro: " + error)
-    }
+    // navigation.navigate('TabRoutes');
 
 
-    // console.log("token eh:" + token);
-
-    // setSession(response.data);
   }
 
 
@@ -76,7 +62,7 @@ function Login({ navigation }) {
         />
         <TouchableOpacity
           style={ styles.btnSubmit}
-          onPress={login}
+          onPress={handleSignIn}
         >
           <Text style={styles.submitText}>Login</Text>
         </TouchableOpacity>
@@ -88,4 +74,4 @@ function Login({ navigation }) {
 
 
 
-export default Login;
+export default SignIn;

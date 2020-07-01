@@ -69,8 +69,8 @@ function TabRoutes() {
               ? <FontAwesome name='user' size={size} color={color} />
               : <FontAwesome name='user-o' size={size} color={color} />;
           }
-
         },
+
       })}
       tabBarOptions={{
         activeBackgroundColor: "#F4C20D",
@@ -102,7 +102,7 @@ function AppRoutes() {
     >
       <AppStack.Screen name="Home" component={TabRoutes} />
       <AppStack.Screen name="Garage" component={Garage} />
-      <AppStack.Screen name="EditProfileScreen" component={EditProfile} />
+      <AppStack.Screen name="EditProfile" component={EditProfile} />
       <AppStack.Screen name="Disponibilidade" component={Disponibilidade} />
 
     </AppStack.Navigator>
