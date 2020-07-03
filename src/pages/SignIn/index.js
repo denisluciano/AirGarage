@@ -1,12 +1,8 @@
 import React, { useContext } from 'react';
 import { Button, TextInput, View, Image, KeyboardAvoidingView, Text } from 'react-native';
-import AsyncStorage from '@react-native-community/async-storage';
-
-
-import styles from './style';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-
 import AuthContext from '../../contexts/auth';
+import styles from './style';
 
 
 function SignIn({ navigation }) {
@@ -18,18 +14,10 @@ function SignIn({ navigation }) {
   //aqui estou usando meu contexto de autentificação
   const { signed, signIn } = useContext(AuthContext);
 
-  console.log(signed);
-
   async function handleSignIn() {
 
     //estou chamando a função "signIn" que eu passo no contexto auth aqui
     signIn(email, senha);
-
-    console.log('Logar')
-
-    // navigation.navigate('TabRoutes');
-
-
   }
 
 
