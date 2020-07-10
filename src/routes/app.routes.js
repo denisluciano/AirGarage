@@ -101,9 +101,54 @@ function AppRoutes() {
       }}
     >
       <AppStack.Screen name="Home" component={TabRoutes} />
-      <AppStack.Screen name="Garage" component={Garage} />
-      <AppStack.Screen name="EditProfile" component={EditProfile} />
-      <AppStack.Screen name="Disponibilidade" component={Disponibilidade} />
+      <AppStack.Screen
+        name="Garage"
+        component={Garage}
+        options={{
+          title: 'Garagem',
+          headerStyle: {
+            backgroundColor: '#F4C20D',
+          },
+          headerTintColor: '#000',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+          headerShown: true,
+          // headerTitleAlign: "center",
+        }}
+      />
+      <AppStack.Screen
+        name="EditProfile"
+        component={EditProfile}
+        options={{
+          title: 'Editar Perfil',
+          headerStyle: {
+            backgroundColor: '#F4C20D',
+          },
+          headerTintColor: '#000',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+          headerShown: true,
+          // headerTitleAlign: "center",
+        }}
+      />
+      <AppStack.Screen
+        name="Disponibilidade"
+        component={Disponibilidade}
+        options={{
+          title: 'Disponibilidade',
+          headerStyle: {
+            backgroundColor: '#F4C20D',
+          },
+          headerTintColor: '#000',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+          headerShown: true,
+          // headerTitleAlign: "center",
+        }}
+      />
 
     </AppStack.Navigator>
   );

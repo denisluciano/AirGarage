@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
   },
   containerGarage:{
     flex: 1,
+    backgroundColor:"#fff"
   },
   containerImageGarage: {
     alignItems: 'center',

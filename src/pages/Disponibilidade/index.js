@@ -33,21 +33,21 @@ function Disponibilidade({ navigation }) {
     today: 'Hoje'
   };
   return (
-    <>
-      <View style={styles.containerDisponibilidade}>
-        <View>
+    <View style={styles.containerDisponibilidade}>
+      <View style={styles.containerBody}>
+        <View style={styles.containerText}>
           <Text style={styles.textDisponibilidade}>Veja as datas disponíveis e selecione os dias que deseja alugar</Text>
         </View>
 
         <View style={styles.containerCalendary}>
           <CalendarList
             markedDates={{
-              '2020-06-16': {selected: true, selectedColor: 'blue'},
-              '2020-06-17': {selected: true, selectedColor: 'blue'},
-              '2020-06-18': {selected: true, selectedColor: 'blue'},
-              '2020-06-19': {selected: true, selectedColor: 'blue'},
-              '2020-06-20': {disabled: true},
+              '2020-08-16': {startingDay: true, color: 'green'},
+
+              '2020-08-19': {endingDay: true, color: 'green'},
+              '2020-08-20': {disabled: true},
             }}
+            markingType={'period'}
             pastScrollRange={0}
             // Max amount of months allowed to scroll to the future. Default = 50
             futureScrollRange={3}
@@ -57,17 +57,17 @@ function Disponibilidade({ navigation }) {
 
       </View>
       <View style={styles.bottomBar}>
-        <Text>Confimar datas</Text>
+
         <TouchableOpacity
           style={ styles.btnConfirmar}
           onPress={() => navigation.navigate('Garage')}
         >
-          <Text style={styles.textConfirmar}>Confirmar</Text>
+          <Text style={styles.textConfirmar}>Avançar</Text>
         </TouchableOpacity>
 
       </View>
 
-    </>
+    </View>
   );
 }
 

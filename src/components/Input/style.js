@@ -17,13 +17,12 @@ const styles = StyleSheet.create({
   },
   containerSignUp:{
     backgroundColor: "#fff",
-    // justifyContent: "space-around",
+    justifyContent: "space-around",
     // alignContent: "center",
-    // flex: 1,
+    flex: 1,
   },
   containerTextHeader:{
-    alignItems: "center",
-    margin:  30,
+    alignItems: "center"
   },
   input: {
     backgroundColor: '#D5DDE0',
@@ -37,9 +36,6 @@ const styles = StyleSheet.create({
   textHeader:{
     fontSize: 18
   },
-  formCadastro:{
-    alignItems: "center",
-  }
 });
 
 export default styles;

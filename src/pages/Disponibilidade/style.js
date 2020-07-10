@@ -2,13 +2,20 @@ import { StyleSheet } from 'react-native'
 
 const styles = StyleSheet.create({
   bottomBar: {
-    height: 40,
-    backgroundColor: "#F4C20D",
+    height: 61,
+    backgroundColor: "#fff",
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "flex-end",
     padding: 10,
-    // elevation: 5,
-    // flex: 1,
+    elevation: 2,
+    borderTopWidth:1,
+    borderTopColor: "#eee",
+  },
+  btnConfirmar:{
+    paddingVertical: 10,
+    paddingHorizontal: 50,
+    borderRadius: 10,
+    backgroundColor: "#F4C20D",
   },
   containerCalendary: {
     marginTop: 15,
@@ -16,15 +23,20 @@ const styles = StyleSheet.create({
     marginRight: 0,
 
   },
-  containerDisponibilidade: {
+  containerDisponibilidade:{
+    flex: 1,
+    backgroundColor: "#fff"
+  },
+  containerBody: {
     marginTop: 10,
-    // marginLeft: 10,
-    // marginRight: 10,
     flex: 1
   },
   textDisponibilidade: {
-    fontSize: 20
+    fontSize: 15
   },
+  containerText:{
+    margin: 15,
+  }
 
 })
 
