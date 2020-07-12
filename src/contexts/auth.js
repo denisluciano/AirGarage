@@ -16,6 +16,9 @@ export const AuthProvider: () => React$Node = ({ children }) => {
 
 
       if(storagedToken && storagedUser){
+        //set token api
+        api.defaults.headers.authorization = 'Bearer ' + JSON.parse(storagedToken).token;
+
         setUser(JSON.parse(storagedUser))
       }
       setLoading(false);
@@ -33,6 +36,9 @@ export const AuthProvider: () => React$Node = ({ children }) => {
 
       await AsyncStorage.setItem('@AirGarage:token', JSON.stringify(response.data.token));
       await AsyncStorage.setItem('@AirGarage:user', JSON.stringify(response.data.user));
+
+      //set token api
+      api.defaults.headers.authorization = 'Bearer ' + response.data.token.token;
 
 
     } catch (error) {

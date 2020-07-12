@@ -4625,6 +4625,11 @@ mkdirp@^0.5.1:
   dependencies:
     minimist "^1.2.5"
 
+moment@2.24.0:
+  version "2.24.0"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.24.0.tgz#0d055d53f5052aa653c9f6eb68bb5d12bf5c2b5b"
+  integrity sha512-bV7f+6l2QigeBBZSM/6yTNq4P2fNpSWj/0e7jQcy87A8e7o2nAfP/34/2ky5Vw4B9S446EtIhodAzkFCcR4dQg==
+
 moment@^2.24.0, moment@^2.27.0:
   version "2.27.0"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.27.0.tgz#8bff4e3e26a236220dfe3e36de756b6ebaa0105d"
@@ -5290,6 +5295,14 @@ react-is@^16.12.0, react-is@^16.13.0, react-is@^16.7.0, react-is@^16.8.1, react-
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
+react-native-calendario@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/react-native-calendario/-/react-native-calendario-2.1.0.tgz#bc96209ef57ce8b988972945b24bbce208a1f6bd"
+  integrity sha512-D94MGyc2p/rSzCJZ48U3NzP7x/V1rNBN5WDWLCtM/Bx+vprvOxMCaFSnzyow99KgrWbeXn7aJJ3vNdvobKfBLQ==
+  dependencies:
+    moment "2.24.0"
+    react-native-month "1.0.3"
+
 react-native-calendars@^1.299.0:
   version "1.299.0"
   resolved "https://registry.yarnpkg.com/react-native-calendars/-/react-native-calendars-1.299.0.tgz#184a373a5f97d58c1f44e051d26820f6a48ac7ee"
@@ -5322,6 +5335,11 @@ react-native-maps@0.27.1:
   version "0.27.1"
   resolved "https://registry.yarnpkg.com/react-native-maps/-/react-native-maps-0.27.1.tgz#2f10cd417bb2fd938c9e015b1c9b6d9b1a44b97f"
   integrity sha512-HygBkZBecTnIVRYrSiLRAvu4OmXOYso/A7c6Cy73HkOh9CgGV8Ap5eBea24tvmFGptjj5Hg8AJ94/YbmWK1Okw==
+
+react-native-month@1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/react-native-month/-/react-native-month-1.0.3.tgz#76738fd77f8abe704fa5312f4ad0350822f0c309"
+  integrity sha512-RoD7/ingkugJ1T+bu2Q9+40AKfbhfjuwQwNtkPjxekOWQYXp8PDQvSgPsVcV9KlhwIKyFWroaOfyBp1XgvjaDw==
 
 react-native-reanimated@^1.7.0:
   version "1.8.0"

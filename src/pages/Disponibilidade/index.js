@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { View, Text, TouchableOpacity, FlatList } from 'react-native';
 
 import {Calendar, CalendarList, Agenda, LocaleConfig } from 'react-native-calendars';
@@ -32,6 +32,20 @@ function Disponibilidade({ navigation }) {
     dayNamesShort: ['Dom.','Seg.','Ter.','Quar.','Quin.','Sex.','Sab.'],
     today: 'Hoje'
   };
+
+  const [selected, setSelected] = useState({'2020-08-10': {startingDay: true, color: 'green'}});
+
+  const onDayPress = (day) => {
+    // setSelected(day.dateString);
+
+
+    setSelected({
+      '2020-08-10': {startingDay: true, color: 'green'},
+      '2020-08-11': {startingDay: true, color: 'green'},
+  });
+    console.log(selected)
+  };
+
   return (
     <View style={styles.containerDisponibilidade}>
       <View style={styles.containerBody}>
@@ -40,18 +54,16 @@ function Disponibilidade({ navigation }) {
         </View>
 
         <View style={styles.containerCalendary}>
-          <CalendarList
-            markedDates={{
-              '2020-08-16': {startingDay: true, color: 'green'},
 
-              '2020-08-19': {endingDay: true, color: 'green'},
-              '2020-08-20': {disabled: true},
-            }}
+          <CalendarList
+
             markingType={'period'}
             pastScrollRange={0}
             // Max amount of months allowed to scroll to the future. Default = 50
             futureScrollRange={3}
             // Enable or disable scrolling of calendar list
+            markedDates={selected}
+            onDayPress={onDayPress}
           />
         </View>
 
@@ -60,7 +72,9 @@ function Disponibilidade({ navigation }) {
 
         <TouchableOpacity
           style={ styles.btnConfirmar}
-          onPress={() => navigation.navigate('Garage')}
+          onPress={() => {
+
+          }}
         >
           <Text style={styles.textConfirmar}>Avançar</Text>
         </TouchableOpacity>

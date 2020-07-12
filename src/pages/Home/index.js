@@ -1,10 +1,10 @@
-import React from 'react';
-import { Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, ImageBackground } from 'react-native';
+import React, {useState, useEffect} from 'react';
+import { FlatList, Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, ImageBackground } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-
+import api from '../../services/api'
 import styles from './style';
 
-function CardGaragem({ navigation }) {
+function CardGaragem({ navigation, item }) {
   return(
     <View style={styles.cardGaragem}>
       <View style={ styles.containerImageGarage }>
@@ -14,13 +14,13 @@ function CardGaragem({ navigation }) {
       </View>
       <View style={styles.containerInfo}>
         <View style={styles.headerInfo}>
-          <Text style={styles.textTitle}>Garagem completa</Text>
+          <Text style={styles.textTitle}>{item.titulo}</Text>
 
           <Icon name="heart-o" size={18} color="#000" />
         </View>
 
         <View style={styles.adressInfo}>
-          <Text style={styles.textAdress}>Av Juscelino Kubitschek, Santa Clara, Viçosa - MG</Text>
+  <Text style={styles.textAdress}>{item.enderecoGaragem.rua},{item.enderecoGaragem.bairro}, {item.enderecoGaragem.cidade}, {item.enderecoGaragem.estado}</Text>
         </View>
 
         <View style={styles.valueInfo}>
@@ -35,7 +35,7 @@ function CardGaragem({ navigation }) {
           <View>
             <TouchableOpacity
               style={ styles.btnDetalhes}
-              onPress={() => navigation.navigate('Garage')}
+              onPress={() => navigation.navigate('Garage', {item: item})}
             >
               <Text style={styles.textDetalhes}>Detalhes</Text>
             </TouchableOpacity>
@@ -63,29 +63,36 @@ function SearchBar() {
 
 
 function HomeScreen({ navigation }) {
+  const [garages, setGarages] = useState([]);
+
+  useEffect(() => {
+    async function loadGarages(){
+
+      const response = await api.get('/garages');
+
+      setGarages(response.data);
+    }
+
+    loadGarages();
+
+
+  },[])
+
   return (
     <View style={styles.screen}>
       <SearchBar />
-      <ScrollView
-        style={styles.scrollViewHome}
-        showsVerticalScrollIndicator={false}
-      >
 
-        <CardGaragem navigation={navigation} />
-        <CardGaragem navigation={navigation} />
-        <CardGaragem navigation={navigation} />
-        <CardGaragem navigation={navigation} />
-        <CardGaragem navigation={navigation} />
-        <CardGaragem navigation={navigation} />
-        <CardGaragem navigation={navigation} />
-        <CardGaragem navigation={navigation} />
-        <CardGaragem navigation={navigation} />
-        <CardGaragem navigation={navigation} />
-        <CardGaragem navigation={navigation} />
-        <CardGaragem navigation={navigation} />
-        <CardGaragem navigation={navigation} />
-        <CardGaragem navigation={navigation} />
-      </ScrollView>
+      <FlatList
+        data={garages}
+        keyExtractor = {(garage) => `list-item-${garage.id}`}
+        renderItem={({ item }) =>
+          <View>
+          <CardGaragem navigation={navigation} item={item} />
+          </View>
+        }
+      />
+
+
     </View>
   );
 }

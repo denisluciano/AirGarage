@@ -1,5 +1,5 @@
-import React from 'react';
-import { Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, ImageBackground } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { FlatList, Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, ImageBackground } from 'react-native';
 import MapView from 'react-native-maps';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -22,7 +22,9 @@ function ComentaryCard(){
 }
 
 
-function Garage({ navigation }) {
+function Garage({ route, navigation }) {
+
+  const { item } = route.params;
 
   return(
     <ScrollView style={styles.containerGarage}>
@@ -43,12 +45,12 @@ function Garage({ navigation }) {
       </View>
       <View style={styles.containerAllInformation}>
         <View style={styles.containerTitulo}>
-          <Text style={styles.textTitle}>Titulo Garagem</Text>
+          <Text style={styles.textTitle}>{item.titulo}</Text>
           <Icon name="heart-o" size={18} color="#000" />
         </View>
         <View style={styles.containerDescricao}>
           <Text>Descrição</Text>
-          <Text>Uma garagem no centro da cidade, próximo aos principais bancos da cidade. Além de ser uma área muito segura. </Text>
+          <Text>{item.descricao}</Text>
         </View>
         <View style={styles.containerInformation}>
           <View>
@@ -57,35 +59,35 @@ function Garage({ navigation }) {
           <View style={styles.containerInformationItems}>
             <View style={styles.itemInformation}>
               <IconMaterial name="arrow-expand-horizontal" size={18} color="#000" />
-              <Text style={styles.textItemInformation}>Dimensões</Text>
+              <Text style={styles.textItemInformation}>Dimensões: {item.dimx} x {item.dimy}</Text>
             </View>
             <View style={styles.itemInformation}>
               <IconMaterial name="format-vertical-align-top" size={18} color="#000" />
-              <Text style={styles.textItemInformation}>Altura Máxima</Text>
+              <Text style={styles.textItemInformation}>Altura Máxima: {item.dimz}</Text>
             </View>
             <View style={styles.itemInformation}>
               <Icon name="building" size={18} color="#000" />
-              <Text style={styles.textItemInformation}>Tipo</Text>
+              <Text style={styles.textItemInformation}>Tipo: {item.tipo}</Text>
             </View>
             <View style={styles.itemInformation}>
               <Icon name="vcard-o" size={18} color="#000" />
-              <Text style={styles.textItemInformation}>Acesso controlado</Text>
+              <Text style={styles.textItemInformation}>Acesso controlado: {item.acesso_controlado ? "Sim" : "Não" }</Text>
             </View>
             <View style={styles.itemInformation}>
               <Icon name="video-camera" size={18} color="#000" />
-              <Text style={styles.textItemInformation}>Cameras de segurança</Text>
+              <Text style={styles.textItemInformation}>Cameras de segurança: {item.cameras ? "Sim" : "Não" }</Text>
             </View>
             <View style={styles.itemInformation}>
               <Icon name="times-circle" size={18} color="#000" />
-              <Text style={styles.textItemInformation}>Vaga presa</Text>
+              <Text style={styles.textItemInformation}>Vaga presa: {item.vaga_presa ? "Sim" : "Não" }</Text>
             </View>
             <View style={styles.itemInformation}>
               <IconMaterial name="fridge-top" size={18} color="#000" />
-              <Text style={styles.textItemInformation}>Depósito de objetos</Text>
+              <Text style={styles.textItemInformation}>Depósito de objetos: {item.objetos ? "Sim" : "Não" }</Text>
             </View>
             <View style={styles.itemInformation}>
               <IconMaterial name="umbrella-outline" size={18} color="#000" />
-              <Text style={styles.textItemInformation}>Coberto</Text>
+              <Text style={styles.textItemInformation}>Coberto: {item.coberto ? "Sim" : "Não" }</Text>
             </View>
           </View>
         </View>
@@ -104,7 +106,7 @@ function Garage({ navigation }) {
             />
           </View>
           <View>
-            <Text>Av Jk, Bairro Santa Clara, Viçosa MG</Text>
+            <Text>{item.enderecoGaragem.rua},{item.enderecoGaragem.bairro}, {item.enderecoGaragem.cidade}, {item.enderecoGaragem.estado}</Text>
           </View>
         </View>
         <View style={styles.containerAvaliacao}>

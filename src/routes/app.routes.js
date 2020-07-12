@@ -99,6 +99,7 @@ function AppRoutes() {
       screenOptions={{
         headerShown:false,
       }}
+      // initialRouteName="Disponibilidade"
     >
       <AppStack.Screen name="Home" component={TabRoutes} />
       <AppStack.Screen
