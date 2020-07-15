@@ -35,7 +35,8 @@ function Garage({ route, navigation }) {
         showsHorizontalScrollIndicator={false}
       >
         <Image
-          source={require('../../assets/garage_page.png')}
+
+          source={require('../../assets/garage_2.png')}
         />
         <Image
           source={require('../../assets/garage_page.png')}
@@ -49,12 +50,12 @@ function Garage({ route, navigation }) {
           <Icon name="heart-o" size={18} color="#000" />
         </View>
         <View style={styles.containerDescricao}>
-          <Text>Descrição</Text>
+          <Text style={styles.tituloInformacoes}>Descrição</Text>
           <Text>{item.descricao}</Text>
         </View>
         <View style={styles.containerInformation}>
           <View>
-            <Text style={styles.textInformation}>Informações</Text>
+            <Text style={styles.tituloInformacoes}>Informações</Text>
           </View>
           <View style={styles.containerInformationItems}>
             <View style={styles.itemInformation}>
@@ -93,7 +94,7 @@ function Garage({ route, navigation }) {
         </View>
         <View style={styles.containerEndereco}>
 
-            <Text style={styles.textEndereco}>Endereço</Text>
+          <Text style={styles.tituloInformacoes}>Endereço</Text>
 
           <View style={styles.containerMaps}>
             <MapView style={styles.Maps}
@@ -109,12 +110,13 @@ function Garage({ route, navigation }) {
             <Text>{item.enderecoGaragem.rua},{item.enderecoGaragem.bairro}, {item.enderecoGaragem.cidade}, {item.enderecoGaragem.estado}</Text>
           </View>
         </View>
+
+        <Text style={styles.tituloInformacoes}>Avaliacão</Text>
         <View style={styles.containerAvaliacao}>
-          <Text>Avaliacão</Text>
-          <Text>4,7</Text>
+          <Text style={styles.rateText}>4,7</Text>
         </View>
         <View style={styles.containerComentarios}>
-          <Text>Comentários</Text>
+          <Text style={styles.tituloInformacoes}>Comentários</Text>
 
           <ComentaryCard />
           <ComentaryCard />

@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
     height: 61,
     backgroundColor: "#fff",
     flexDirection: "row",
-    justifyContent: "flex-end",
+    justifyContent: "space-between",
     padding: 10,
     elevation: 2,
     borderTopWidth:1,
@@ -17,10 +17,17 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     backgroundColor: "#F4C20D",
   },
+  btnLimpar:{
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+    borderRadius: 10,
+    backgroundColor: "#ff0000",
+  },
   containerCalendary: {
     marginTop: 15,
     marginLeft: 0,
     marginRight: 0,
+    marginBottom: 50,
 
   },
   containerDisponibilidade:{

@@ -13,7 +13,10 @@ const styles = StyleSheet.create({
     marginRight: 10,
     marginLeft: 10,
   },
-
+  containerAvaliacao:{
+    marginTop: 20,
+    alignItems:"center"
+  },
   containerCardComentary:{
     flex:1,
     padding:10,
@@ -69,6 +72,10 @@ const styles = StyleSheet.create({
     width: 380,
     height:100
   },
+  rateText: {
+
+    fontSize: 50
+  },
   textComentary:{
     marginLeft:9,
     marginTop:5
@@ -80,11 +87,17 @@ const styles = StyleSheet.create({
     fontSize: 15,
   },
   textItemInformation:{
-    marginLeft: 3,
+    marginLeft: 8,
 
   },
   textTitle: {
-    fontSize: 15,
+    fontSize: 18,
+    fontWeight:"bold",
+  },
+  tituloInformacoes:{
+    fontWeight: "bold",
+    fontSize:16,
+    marginTop: 20,
   },
 })
 

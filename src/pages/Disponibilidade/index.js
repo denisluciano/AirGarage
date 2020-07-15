@@ -5,24 +5,7 @@ import {Calendar, CalendarList, Agenda, LocaleConfig } from 'react-native-calend
 
 import styles from './style';
 
-const calendary =
-{
-  "janeiro" : 31,
-  "marco": 31,
-  "abril": 30,
-  "maio": 31,
-  "junho": 30,
-  "julho": 31,
-  "agosto": 31,
-  "setembro": 30,
-  "outubro": 31,
-  "novembro": 30,
-  "dezembro": 31,
-};
-
-
-
-function Disponibilidade({ navigation }) {
+function AddGaragePage3({ route, navigation }) {
   LocaleConfig.defaultLocale = 'pt-br';
 
   LocaleConfig.locales['pt-br'] = {
@@ -33,24 +16,119 @@ function Disponibilidade({ navigation }) {
     today: 'Hoje'
   };
 
-  const [selected, setSelected] = useState({'2020-08-10': {startingDay: true, color: 'green'}});
+  const [selected, setSelected] = useState({});
+  const [firstDate, setFirstDate] = useState({});
+
+  // usado para saber qual clique é para adicionar o intervalo.
+  // false não deu nem um clique, true falta um para o intervalo
+  const [alter, setAlter] = useState(false)
 
   const onDayPress = (day) => {
-    // setSelected(day.dateString);
 
+    if(!alter){
+      const dayObj = new Date(day.year, day.month-1, day.day)
+      setFirstDate(dayObj);
+      setAlter(!alter)
+    }else {
+      const dayObj = new Date(day.year, day.month-1, day.day); //month is less 1 because is start in month 0 and calendary 1
 
-    setSelected({
-      '2020-08-10': {startingDay: true, color: 'green'},
-      '2020-08-11': {startingDay: true, color: 'green'},
-  });
-    console.log(selected)
+      if(firstDate > dayObj){
+        markDays(dayObj, firstDate);
+      }else {
+        markDays(firstDate, dayObj);
+      }
+
+      setAlter(!alter)
+     
+    }
   };
+  const next = () => {
+    
+    let dataPage3 = {}
+       
+    dataPage3 = Object.assign(route.params, {"disponibilidade": selected});
+
+    navigation.navigate('AddGaragePage4', dataPage3)
+
+
+  };
+  const markDays = (initial, final) => {
+  
+    const markedDay = Object.assign({}, selected)
+
+    var d = new Date(initial)
+    
+    for (; d <= final; d.setDate(d.getDate() + 1)) {
+
+      if(final.getTime() == initial.getTime()){
+        markedDay[formatDate(d)] = {startingDay: true, color: 'green', endingDay: true}
+        
+        var dateAnterior = new Date(d)
+        dateAnterior.setDate(d.getDate() - 1)
+        
+        if(!!markedDay[formatDate(dateAnterior)]){
+          markedDay[formatDate(dateAnterior)].endingDay = true
+        }
+        var dateProximo = new Date(d)
+        dateProximo.setDate(d.getDate() + 1)
+        
+        if(!!markedDay[formatDate(dateProximo)]){
+          markedDay[formatDate(dateProximo)].startingDay = true;
+        }
+
+      } else if(d.getTime() == initial.getTime()){
+        markedDay[formatDate(d)] =  {startingDay: true, color: 'green' }
+        
+        var dateAnterior = new Date(d)
+        dateAnterior.setDate(d.getDate() - 1)
+        
+        if(!!markedDay[formatDate(dateAnterior)]){
+          markedDay[formatDate(dateAnterior)].endingDay = true
+        }
+
+
+      }else if(d.getTime() === final.getTime()){
+        markedDay[formatDate(d)] = { endingDay: true, color: 'green'}
+        //verificando se o proximo está selecionado para caso tiver falar que ele indica um inicio
+        
+        var dateProximo = new Date(d)
+        dateProximo.setDate(d.getDate() + 1)
+        
+        if(!!markedDay[formatDate(dateProximo)]){
+          markedDay[formatDate(dateProximo)].startingDay = true;
+        }
+
+      }else{
+        markedDay[formatDate(d)] = { startingDay: false, color: 'green', endingDay: false}
+      }
+      
+    }
+
+    setSelected(markedDay);
+  };
+
+  function formatDate(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) 
+        month = '0' + month;
+    if (day.length < 2) 
+        day = '0' + day;
+
+    return [year, month, day].join('-');
+}
 
   return (
     <View style={styles.containerDisponibilidade}>
       <View style={styles.containerBody}>
         <View style={styles.containerText}>
-          <Text style={styles.textDisponibilidade}>Veja as datas disponíveis e selecione os dias que deseja alugar</Text>
+          <Text style={styles.textDisponibilidade}>
+            Selecione os períodos que deseja disponibilizar 
+            sua garagem clicando primeira vez em uma data para indicar o inicio e segunda vez para demarcar o fim
+            </Text>
         </View>
 
         <View style={styles.containerCalendary}>
@@ -60,7 +138,7 @@ function Disponibilidade({ navigation }) {
             markingType={'period'}
             pastScrollRange={0}
             // Max amount of months allowed to scroll to the future. Default = 50
-            futureScrollRange={3}
+            futureScrollRange={12}
             // Enable or disable scrolling of calendar list
             markedDates={selected}
             onDayPress={onDayPress}
@@ -71,10 +149,17 @@ function Disponibilidade({ navigation }) {
       <View style={styles.bottomBar}>
 
         <TouchableOpacity
-          style={ styles.btnConfirmar}
+          style={styles.btnLimpar}
           onPress={() => {
-
+            setSelected({})
           }}
+        >
+          <Text style={styles.textConfirmar}>Limpar tudo</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.btnConfirmar}
+          onPress={next}
         >
           <Text style={styles.textConfirmar}>Avançar</Text>
         </TouchableOpacity>
@@ -85,4 +170,4 @@ function Disponibilidade({ navigation }) {
   );
 }
 
-export default Disponibilidade;
+export default AddGaragePage3;
