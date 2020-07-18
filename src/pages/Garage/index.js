@@ -24,7 +24,7 @@ function ComentaryCard(){
 
 function Garage({ route, navigation }) {
 
-  const { item } = route.params;
+  const item  = route.params;
 
   return(
     <ScrollView style={styles.containerGarage}>
@@ -124,7 +124,9 @@ function Garage({ route, navigation }) {
           <ComentaryCard />
           <TouchableOpacity
             style={ styles.btnDetalhes}
-            onPress={() => navigation.navigate('Disponibilidade')}
+            onPress={() => {
+              // console.log(...route.params.disponibilidadeGaragem)
+              navigation.navigate('Disponibilidade', route.params)}}
           >
             <Text style={styles.textDetalhes}>Ver disponibilidade</Text>
           </TouchableOpacity>
