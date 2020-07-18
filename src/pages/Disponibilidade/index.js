@@ -36,7 +36,7 @@ function Disponibilidade({ route, navigation }) {
       var d = new Date(dayInitialObj)
 
       for (; d <= dayFinalObj; d.setDate(d.getDate() + 1)) {
-        markedDay[formatDate(d)] = {disabled: false, textColor: "#000"}
+        markedDay[formatDate(d)] = {disabled: false, textColor: "#000", idDisp: element.id}
       }
     });
     setSelected( Object.assign({}, markedDay));
@@ -47,8 +47,14 @@ function Disponibilidade({ route, navigation }) {
     const markedDay = Object.assign({}, selected);
 
     diasAlugar.forEach(element => {
-      markedDay[element] = {disabled: false, textColor: "#000"}
+      if(!!markedDay[element].idDisp){
+        markedDay[element] = {disabled: false, textColor: "#000", idDisp: markedDay[element].idDisp}
+      }
     });
+
+    //limpar caso tenha um dia selecionado
+    setFirstDate({})
+    setAlter(false)
 
     setSelected(markedDay);
     setDiasAlugar([]);
@@ -59,9 +65,12 @@ function Disponibilidade({ route, navigation }) {
 
   const onDayPress = (day) => {
 
+    //se esse dia está disponível
     if(!selected[day.dateString]){
       return;
     }
+
+
 
     if(!alter){
       clearDays(); // para caso ja haja uma seleção
@@ -69,6 +78,13 @@ function Disponibilidade({ route, navigation }) {
       setFirstDate(dayObj);
       setAlter(!alter)
     }else {
+      console.log(selected[formatDate(firstDate)])
+
+      //se o primeiro já tiver selecionado não deixar em um período distinto
+      if(selected[formatDate(firstDate)].idDisp != selected[day.dateString].idDisp ){
+        return;
+      }
+
       const dayObj = new Date(day.year, day.month-1, day.day); //month is less 1 because is start in month 0 and calendary 1
 
       if(firstDate > dayObj){
@@ -92,7 +108,7 @@ function Disponibilidade({ route, navigation }) {
 
     for (; d <= final; d.setDate(d.getDate() + 1)) {
 
-      markedDay[formatDate(d)] = {startingDay: false, color: 'green', endingDay: false}
+      markedDay[formatDate(d)] = {startingDay: false, color: 'green', endingDay: false, idDisp: markedDay[formatDate(d)].idDisp}
       markedDayKeys.push(formatDate(d));
 
     }
