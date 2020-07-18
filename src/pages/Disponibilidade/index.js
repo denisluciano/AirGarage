@@ -1,11 +1,10 @@
 import React, {useState, useEffect, useCallback} from 'react';
 import { View, Text, TouchableOpacity, FlatList } from 'react-native';
-
 import {Calendar, CalendarList, Agenda, LocaleConfig } from 'react-native-calendars';
-
 import styles from './style';
 
-function AddGaragePage3({ route, navigation }) {
+
+function Disponibilidade({ route, navigation }) {
   LocaleConfig.defaultLocale = 'pt-br';
 
   LocaleConfig.locales['pt-br'] = {
@@ -18,36 +17,11 @@ function AddGaragePage3({ route, navigation }) {
 
   const [selected, setSelected] = useState({});
   const [firstDate, setFirstDate] = useState({});
-  const [dates, setDates] = useState([]);
-
   // usado para saber qual clique é para adicionar o intervalo.
   // false não deu nem um clique, true falta um para o intervalo
   const [alter, setAlter] = useState(false)
 
-  const onDayPress = (day) => {
-
-    // console.log(route.params.disponibilidadeGaragem)
-
-    if(!alter){
-      const dayObj = new Date(day.year, day.month-1, day.day)
-      setFirstDate(dayObj);
-      setAlter(!alter)
-    }else {
-      const dayObj = new Date(day.year, day.month-1, day.day); //month is less 1 because is start in month 0 and calendary 1
-
-      if(firstDate > dayObj){
-        markDays(dayObj, firstDate);
-      }else {
-        markDays(firstDate, dayObj);
-      }
-
-      setAlter(!alter)
-
-    }
-  };
-
-
-
+  const [diasAlugar, setDiasAlugar] = useState([]);
 
   // to load dates avaliable
   useEffect(() => {
@@ -64,14 +38,70 @@ function AddGaragePage3({ route, navigation }) {
       for (; d <= dayFinalObj; d.setDate(d.getDate() + 1)) {
         markedDay[formatDate(d)] = {disabled: false, textColor: "#000"}
       }
+    });
+    setSelected( Object.assign({}, markedDay));
+  },[])
 
+  const clearDays = () => {
+
+    const markedDay = Object.assign({}, selected);
+
+    diasAlugar.forEach(element => {
+      markedDay[element] = {disabled: false, textColor: "#000"}
     });
 
-    setSelected( Object.assign({}, markedDay));
+    setSelected(markedDay);
+    setDiasAlugar([]);
+
+  }
 
 
 
-  },[])
+  const onDayPress = (day) => {
+
+    if(!selected[day.dateString]){
+      return;
+    }
+
+    if(!alter){
+      clearDays(); // para caso ja haja uma seleção
+      const dayObj = new Date(day.year, day.month-1, day.day)
+      setFirstDate(dayObj);
+      setAlter(!alter)
+    }else {
+      const dayObj = new Date(day.year, day.month-1, day.day); //month is less 1 because is start in month 0 and calendary 1
+
+      if(firstDate > dayObj){
+        markDays(dayObj, firstDate);
+      }else {
+        markDays(firstDate, dayObj);
+      }
+
+      setAlter(!alter)
+
+    }
+  }
+
+
+  const markDays = (initial, final) => {
+
+    const markedDay = Object.assign({}, selected);
+    const markedDayKeys = [];
+
+    var d = new Date(initial)
+
+    for (; d <= final; d.setDate(d.getDate() + 1)) {
+
+      markedDay[formatDate(d)] = {startingDay: false, color: 'green', endingDay: false}
+      markedDayKeys.push(formatDate(d));
+
+    }
+    console.log(markedDayKeys);
+
+    setDiasAlugar(markedDayKeys);
+    setSelected(markedDay)
+  }
+
 
 
   const next = () => {
@@ -83,13 +113,9 @@ function AddGaragePage3({ route, navigation }) {
     navigation.navigate('AddGaragePage4', dataPage3)
 
 
-  };
+  }
 
-
-
-
-
-  function formatDate(date) {
+  const formatDate = (date) => {
     var d = new Date(date),
         month = '' + (d.getMonth() + 1),
         day = '' + d.getDate(),
@@ -101,7 +127,7 @@ function AddGaragePage3({ route, navigation }) {
         day = '0' + day;
 
     return [year, month, day].join('-');
-}
+  }
 
   return (
     <View style={styles.containerDisponibilidade}>
@@ -125,7 +151,6 @@ function AddGaragePage3({ route, navigation }) {
             markedDates={selected}
             onDayPress={onDayPress}
             disabledByDefault={true}
-            disableAllTouchEventsForDisabledDays={true}
           />
         </View>
 
@@ -135,10 +160,10 @@ function AddGaragePage3({ route, navigation }) {
         <TouchableOpacity
           style={styles.btnLimpar}
           onPress={() => {
-            setSelected({})
+            clearDays();
           }}
         >
-          <Text style={styles.textConfirmar}>Limpar tudo</Text>
+          <Text style={styles.textConfirmar}>Limpar período</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -154,4 +179,4 @@ function AddGaragePage3({ route, navigation }) {
   );
 }
 
-export default AddGaragePage3;
+export default Disponibilidade;
