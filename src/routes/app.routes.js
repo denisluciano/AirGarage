@@ -36,6 +36,7 @@ import Profile from '../pages/Profile';
 import Garage from '../pages/Garage';
 import EditProfile from '../pages/EditProfile';
 import Disponibilidade from '../pages/Disponibilidade';
+import Confirmacao from '../pages/Confirmacao';
 
 
 function TabRoutes() {
@@ -139,6 +140,22 @@ function AppRoutes() {
         component={Disponibilidade}
         options={{
           title: 'Disponibilidade',
+          headerStyle: {
+            backgroundColor: '#F4C20D',
+          },
+          headerTintColor: '#000',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+          headerShown: true,
+          // headerTitleAlign: "center",
+        }}
+      />
+      <AppStack.Screen
+        name="Confirmacao"
+        component={Confirmacao}
+        options={{
+          title: 'Confirmação',
           headerStyle: {
             backgroundColor: '#F4C20D',
           },

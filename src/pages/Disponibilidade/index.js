@@ -20,7 +20,6 @@ function Disponibilidade({ route, navigation }) {
   // usado para saber qual clique é para adicionar o intervalo.
   // false não deu nem um clique, true falta um para o intervalo
   const [alter, setAlter] = useState(false)
-
   const [diasAlugar, setDiasAlugar] = useState([]);
 
   // to load dates avaliable
@@ -124,10 +123,9 @@ function Disponibilidade({ route, navigation }) {
 
     let dataPage3 = {}
 
-    dataPage3 = Object.assign(route.params, {"disponibilidade": selected});
+    dataPage3 = Object.assign(route.params, {"diasAlugar": diasAlugar});
 
-    navigation.navigate('AddGaragePage4', dataPage3)
-
+    navigation.navigate('Confirmacao', dataPage3);
 
   }
 

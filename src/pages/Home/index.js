@@ -20,7 +20,7 @@ function CardGaragem({ navigation, item }) {
         </View>
 
         <View style={styles.adressInfo}>
-  <Text style={styles.textAdress}>{item.enderecoGaragem.rua},{item.enderecoGaragem.bairro}, {item.enderecoGaragem.cidade}, {item.enderecoGaragem.estado}</Text>
+          <Text style={styles.textAdress}>{item.enderecoGaragem.rua},{item.enderecoGaragem.bairro}, {item.enderecoGaragem.cidade}, {item.enderecoGaragem.estado}</Text>
         </View>
 
         <View style={styles.valueInfo}>
