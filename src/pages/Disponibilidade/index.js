@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useCallback} from 'react';
-import { View, Text, TouchableOpacity, FlatList } from 'react-native';
+import {Alert, View, Text, TouchableOpacity, FlatList } from 'react-native';
 import {Calendar, CalendarList, Agenda, LocaleConfig } from 'react-native-calendars';
 import styles from './style';
 
@@ -38,6 +38,19 @@ function Disponibilidade({ route, navigation }) {
         markedDay[formatDate(d)] = {disabled: false, textColor: "#000", idDisp: element.id}
       }
     });
+
+    route.params.locacaoGaragem.forEach(element => {
+
+      const dayInitialLoc = new Date(element.data_inicial)
+      const dayFinalLoc = new Date(element.data_final)
+
+      var d = new Date(dayInitialLoc)
+
+      for (; d <= dayFinalLoc; d.setDate(d.getDate() + 1)) {
+        markedDay[formatDate(d)] = {disabled: true, color: "#F4C20D", locacao: true}
+      }
+    })
+
     setSelected( Object.assign({}, markedDay));
   },[])
 
@@ -66,9 +79,21 @@ function Disponibilidade({ route, navigation }) {
 
     //se esse dia está disponível
     if(!selected[day.dateString]){
+      Alert.alert(
+        'Erro',
+        "Dia indiponível, por favor selecione uma data válida"
+      )
       return;
     }
 
+    //se o dia já pertence a uma locacao
+    if(!!selected[day.dateString].locacao){
+      Alert.alert(
+        'Erro',
+        "Esse dia já pertence a uma locação. Por favor selecione um dia válido"
+      )
+      return;
+    }
 
 
     if(!alter){
@@ -77,24 +102,63 @@ function Disponibilidade({ route, navigation }) {
       setFirstDate(dayObj);
       setAlter(!alter)
     }else {
-      console.log(selected[formatDate(firstDate)])
+      // console.log(selected[formatDate(firstDate)])
+
 
       //se o primeiro já tiver selecionado não deixar em um período distinto
       if(selected[formatDate(firstDate)].idDisp != selected[day.dateString].idDisp ){
+        Alert.alert(
+          'Erro',
+          "Você não pode selecionar um intervalo que contenha dias indiponíveis"
+        )
         return;
       }
+
+
 
       const dayObj = new Date(day.year, day.month-1, day.day); //month is less 1 because is start in month 0 and calendary 1
 
       if(firstDate > dayObj){
+        //verificando se existe alguma data marcada entre o primeiro e o ultimo dia
+        if(existDateBetween(dayObj, firstDate)){
+          Alert.alert(
+            'Erro',
+            "Você não pode selecionar um intervalo que exista uma locação já existente"
+          )
+          return;
+        }
         markDays(dayObj, firstDate);
       }else {
+        //verificando se existe alguma data marcada entre o primeiro e o ultimo dia
+        if(existDateBetween(firstDate, dayObj)){
+          Alert.alert(
+            'Erro',
+            "Você não pode selecionar um intervalo que exista uma locação já existente"
+          )
+          return;
+        }
         markDays(firstDate, dayObj);
       }
 
       setAlter(!alter)
 
     }
+  }
+  const existDateBetween = (initial, final) => {
+
+    const markedDay = Object.assign({}, selected);
+
+    var d = new Date(initial)
+
+    for (; d <= final; d.setDate(d.getDate() + 1)) {
+
+      if(!!markedDay[formatDate(d)].locacao){
+        return true;
+
+      }
+
+    }
+    return false;
   }
 
 

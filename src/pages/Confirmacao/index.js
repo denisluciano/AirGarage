@@ -26,20 +26,32 @@ function Confirmacao({ route, navigation}) {
 
   function handleSubmit() {
 
-    // api.post('/garages', payload).then((res) => {
-    //   console.log((res.data.id))
-
-    // }).catch((err) =>{
-    //   console.log(err)
-    // });
     console.log(route.params);
 
-    navigation.navigate('Home')
+    var payload = {
+      valor_total: route.params.diasAlugar.length * route.params.disponibilidadeGaragem[0].valor_diaria,
+      data_inicial: route.params.diasAlugar[0],
+      data_final: route.params.diasAlugar[route.params.diasAlugar.length - 1],
+      garage_id: route.params.id,
+      proprietario_id: route.params.user_id
+    }
 
-    Alert.alert(
-      'Sucesso',
-      "Sua solicitação de locação foi realizada com sucesso. Para visualiza-la va a página de locações"
-    )
+
+    api.post('/locacao', payload).then((res) => {
+      Alert.alert(
+        'Sucesso',
+        "Sua solicitação de locação foi realizada com sucesso. Para visualiza-la vá a página de locações"
+      )
+      navigation.navigate('Home')
+
+    }).catch((err) =>{
+      console.log(err)
+      Alert.alert(
+        'Erro',
+        "Ocorreu um erro ao criar a locacao"
+      )
+
+    });
 
   }
   function dataAtualFormatada(date){
@@ -79,7 +91,19 @@ function Confirmacao({ route, navigation}) {
       <TouchableOpacity
         style={ styles.btnDetalhes}
         onPress={() => {
-          handleSubmit()
+          Alert.alert(
+            "Confirmação",
+            "Deseja realmente confirmar o cadastro da locação com os dados informados anteriormente?",
+            [
+              {
+                text: "CANCELAR",
+                onPress: () => console.log("Cancel Pressed"),
+                style: "cancel"
+              },
+              { text: "SIM", onPress: () => handleSubmit() }
+            ],
+            { cancelable: false }
+          );
         }}
       >
         <Text style={styles.textDetalhes}>Confirmar locação</Text>
