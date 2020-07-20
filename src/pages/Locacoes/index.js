@@ -37,7 +37,7 @@ function CardGaragem({ navigation, item }) {
             <Text style={styles.textAdress}>Endereço: {item.enderecoGaragem.rua},{item.enderecoGaragem.bairro}, {item.enderecoGaragem.cidade}, {item.enderecoGaragem.estado}</Text>
           </View> */}
           <View style={styles.infoItem}>
-        <Text style={styles.textAdress}>Cliente: {item.proprietarioLocacao.nome}</Text>
+        <Text style={styles.textAdress}>Proprietário: {item.proprietarioLocacao.nome}</Text>
           </View>
           <View style={styles.infoItem}>
             <Text style={styles.textAdress}>Valor: {formatTotalValue(item.valor_total)}</Text>
