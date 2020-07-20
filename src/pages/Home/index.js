@@ -24,7 +24,7 @@ function CardGaragem({ navigation, item }) {
         </View>
 
         <View style={styles.valueInfo}>
-          <Text style={styles.textValue}>15,00/Dia</Text>
+          <Text style={styles.textValue}>{item.disponibilidadeGaragem[0].valor_diaria}/Dia</Text>
 
         </View>
         <View style={styles.bottomInfo}>
@@ -88,6 +88,11 @@ function HomeScreen({ navigation }) {
       <FlatList
         data={garages}
         keyExtractor = {(garage) => `list-item-${garage.id}`}
+        ListEmptyComponent={() => (
+          <View style={{height: 300, marginHorizontal:20, alignItems:"center", justifyContent:"center"}} >
+          <Text style={{fontSize: 20}}>Não há nenhuma garagem disponível no momento</Text>
+          </View>
+          )}
         renderItem={({ item }) =>
           <View>
           <CardGaragem navigation={navigation} item={item} />
